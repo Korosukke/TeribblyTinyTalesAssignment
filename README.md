@@ -1,46 +1,66 @@
-# TerriblyTinyTalesAssignment
+## React Submit Component Readme
 
-# Project Name
+This readme provides an explanation of the code in the `Submit` component, including the components used and the libraries and plugins utilized.
 
-Brief description of the project.
+### Components
 
-## Overview
+The `Submit` component is a functional component written in React. It displays a container with a logo, a button, and a chart. When the button is clicked, it makes an HTTP request to retrieve text data from a URL. The text data is then processed to generate a word frequency histogram, which is displayed as a bar chart using the `react-chartjs-2` library. The generated histogram can also be exported as a CSV file.
 
-Explain the purpose and functionality of your code.
+#### React Components
 
-## Components
+- `Submit`: The main functional component that encapsulates the entire submission functionality. It manages the state of the histogram data, renders the logo, button, and chart, and handles the HTTP request and CSV export.
 
-Describe the components of the code and how they work together.
+#### External Libraries and Plugins
 
-- `file1.js`: Description of file 1.
-- `file2.js`: Description of file 2.
-- ...
+- `axios`: A popular JavaScript library used for making HTTP requests. It is used in this component to fetch the text data from a specified URL.
 
-## Libraries and Plugins
+- `react-chartjs-2`: A React wrapper for Chart.js library that allows easy integration of charts into React applications. It is used to create the bar chart to display the word frequency histogram.
 
-List all the libraries and plugins used in your code, along with their versions:
+- `chart.js`: The underlying library that powers `react-chartjs-2`. It is used here to register the necessary chart components before initializing the chart.
 
-- Library 1 (v1.0.0): Description of the library.
-- Library 2 (v2.0.0): Description of the library.
-- Plugin X (v1.5.0): Description of the plugin.
+### Usage
 
-## Setup
+To use the `Submit` component in a React application, follow these steps:
 
-Provide instructions on how to set up and run your code:
+1. Install the required dependencies by running the following command:
 
-1. Step 1.
-2. Step 2.
-3. ...
+   ```
+   npm install axios react-chartjs-2 chart.js
+   ```
 
-## License
+2. Import the necessary dependencies and the `Submit` component into your application:
 
-Specify the license for your code.
+   ```jsx
+   import React from 'react';
+   import Submit from './Submit';
+   ```
 
-## Contributing
+3. Use the `Submit` component in your application:
 
-Guidelines for contributing to your code (if applicable).
+   ```jsx
+   function App() {
+     return (
+       <div>
+         <Submit />
+       </div>
+     );
+   }
+   ```
 
-## Contact
+4. Style the component using CSS or a stylesheet of your choice. The class names used in the component (`container`, `logo`, `button-container`, `button`, `export-button`, `chart-container`) can be customized to match your desired styling.
 
-Provide contact information for users to get in touch with you.
+### Explanation
 
+The `Submit` component follows the standard React functional component syntax. It uses the `useState` and `useRef` hooks to manage state and create a reference to the chart component. The `useEffect` hook is used to clean up the chart instance when the component unmounts.
+
+The `handleSubmit` function is triggered when the "Submit" button is clicked. It makes an HTTP GET request using `axios` to retrieve the text data from the specified URL. The received data is then processed to generate a word frequency histogram. The histogram data is stored in the component's state using the `setHistogramData` function.
+
+The `handleExport` function is triggered when the "Export" button is clicked. It checks if the histogram data exists, and if so, it generates a CSV file containing the word-frequency data. The CSV file is then downloaded by creating a temporary anchor element.
+
+The JSX in the return statement defines the layout and structure of the component. When the `histogramData` is null, only the "Submit" button is displayed. Once the `histogramData` is set, the "Export" button and the chart container are rendered, along with the `Bar` component from `react-chartjs-2`. The chart data is passed as props to the `Bar` component, and the necessary options for the chart are provided.
+
+The `logo` image is imported and displayed using an `<img>` tag.
+
+### Summary
+
+The `Submit` component is a React component that fetch
