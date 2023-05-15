@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { Bar } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
-import logo from './Assets/terribly.png'
-import './SubmitStyles.css'
+import logo from './Assets/terribly.png';
+import './SubmitStyles.css';
 
 Chart.register(...registerables);
 
@@ -25,7 +25,7 @@ const Submit = () => {
       const data = response.data;
 
       const wordCountMap = {};
-      const words = data.split(/\s+/);
+      const words = data.toLowerCase().match(/\b[\w']+\b/g);
 
       words.forEach((word) => {
         if (wordCountMap[word]) {
@@ -83,10 +83,14 @@ const Submit = () => {
       </div>
       <div className="button-container">
         {!histogramData ? (
-          <button className="button" onClick={handleSubmit}>Submit</button>
+          <button className="button" onClick={handleSubmit}>
+            Submit
+          </button>
         ) : (
           <>
-          <button className="button export-button" onClick={handleExport}>Export</button>
+            <button className="button export-button" onClick={handleExport}>
+              Export
+            </button>
             <div className="chart-container">
               <Bar
                 ref={chartRef}
@@ -94,8 +98,8 @@ const Submit = () => {
                 options={{
                   scales: {
                     y: {
-                      type: 'logarithmic',
-                      beginAtZero: true
+                      type: 'linear',
+                      beginAtZero: true,
                     },
                   },
                 }}
@@ -106,7 +110,6 @@ const Submit = () => {
       </div>
     </div>
   );
-  
 };
 
 export default Submit;
