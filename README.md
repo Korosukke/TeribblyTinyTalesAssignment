@@ -25,3 +25,6 @@ The `handleExport` function is triggered when the "Export" button is clicked. It
 The JSX in the return statement defines the layout and structure of the component. When the `histogramData` is null, only the "Submit" button is displayed. Once the `histogramData` is set, the "Export" button and the chart container are rendered, along with the `Bar` component from `react-chartjs-2`. The chart data is passed as props to the `Bar` component, and the necessary options for the chart are provided.
 
 The `logo` image is imported and displayed using an `<img>` tag.
+
+## Link to the website
+https://teribbly-tiny-tales-assignment.vercel.app/
